@@ -1,0 +1,17 @@
+<ion-view view-title='DVDs'>
+
+    <ion-nav-buttons side='left'>
+        <i class='ion-ios-search-strong' ng-click='vm.isSearching=!vm.isSearching;'></i>
+    </ion-nav-buttons>
+
+    <ion-content>
+
+        <label class='item item-input' ng-show='vm.isSearching'>
+            <i class='icon ion-search placeholder-icon'></i>
+            <input type='search' placeholder='Search'>
+        </label>
+
+        Refresh !
+    </ion-content>
+
+</ion-view>

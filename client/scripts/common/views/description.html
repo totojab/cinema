@@ -1,0 +1,34 @@
+<ion-view view-title="{{vm.movie.title}}">
+    <ion-nav-buttons side='left'>
+        <i class="ion-ios-arrow-back" ng-click="vm.goBack()" style='font-size:24px'> </i>
+    </ion-nav-buttons>
+    <ion-content ng-style="{'background-image': 'url(' + vm.movie.posters.original + ')'}" class='cover-image'>
+        Release Date : {{vm.movie.release_dates.theater}}
+        <br> Audience Recommendation : {{vm.movie.ratings.audience_score}}%
+        <br> Critics Recommendation : {{vm.movie.ratings.critics_score}}%
+        <br> Synopsis : {{vm.movie.synopsis}}
+        <br> Cast :
+        <div ng-repeat='actor in vm.movie.abridged_cast'>
+            {{actor.name}} plays {{actor.characters[0]}}
+        </div>
+        Last Reviews :
+        <div ng-repeat='review in vm.movie.reviews.reviews | limitTo: 10'>
+            <div class="list card">
+                <div class="item">
+                    <h2>{{review.critic}}</h2>
+                    <p>{{review.date}}</p>
+                </div>
+                <div class="item item-body">
+                    <p>
+                        {{review.quote}}
+                    </p>
+
+                </div>
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    {{review.publication}}
+
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
