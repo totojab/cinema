@@ -27,10 +27,11 @@ module.exports = function(namespace) {
         $stateProvider
 
         // setup an abstract state for the tabs directive
-            .state('tab', {
+
+        .state('tab', {
             url: '/tab',
             abstract: true,
-            template: require('./views/tabs.html'),
+            template: require('./views/tabs.html')
         })
 
         // Each tab has its own nav history stack:
@@ -50,7 +51,7 @@ module.exports = function(namespace) {
             views: {
                 'shows': {
                     template: require('./views/shows.html'),
-                    controller: fullname + '.shows as vm',
+                    controller: fullname + '.shows as vm'
                 }
             }
         })

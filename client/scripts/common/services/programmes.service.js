@@ -12,6 +12,7 @@ module.exports = function(app) {
         };
 
         var moviesArray = [];
+        var dvdArray = [];
 
         var getMovies = function() {
             var request = $http({
@@ -26,11 +27,29 @@ module.exports = function(app) {
                     return response.data.movies;
 
                 }).then(function(movies) {
+                    dvdArray = movies;
+                    return dvdArray;
+                });
+
+        };
+
+        var getDvd = function() {
+            var request = $http({
+                method: 'get',
+                url: 'http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=' + rottenKey + '&page_limit=20',
+                params: {
+                    action: 'get'
+                }
+            });
+            return request
+                .then(function(response) {
+                    return response.data.movies;
+
+                }).then(function(movies) {
                     moviesArray = movies;
                     return moviesArray;
                 });
-
-        }
+        };
 
         var getReviews = function(movie) {
             var request = $http({
@@ -42,9 +61,8 @@ module.exports = function(app) {
             });
             return request
                 .then(function(response) {
-                    console.log(response.data);
                     return response.data;
-                })
+                });
 
         };
 
@@ -77,7 +95,8 @@ module.exports = function(app) {
             getMovies: getMovies,
             filterTitles: filterTitles,
             getMovieByNumber: getMovieByNumber,
-            getReviews: getReviews
+            getReviews: getReviews,
+            getDvd: getDvd
         };
 
     }

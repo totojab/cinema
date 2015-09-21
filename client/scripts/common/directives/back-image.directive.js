@@ -1,5 +1,5 @@
 'use strict';
- /*eslint consistent-this:[2,  "backImageCtrl"] */
+/*eslint consistent-this:[2,  "backImageCtrl"] */
 var directivename = 'backImage';
 
 module.exports = function(app) {

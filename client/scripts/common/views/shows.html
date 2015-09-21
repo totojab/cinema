@@ -11,10 +11,9 @@
         </form>
         <a collection-repeat='movie in vm.moviesDisplayed' item-height='25%' item-width='20%' ng-style="{'background-image': 'url(' + movie.posters.original + ')'}" class='cover-image' ui-sref='tab.dvdescription({movieNumber: $index})'>
             <div class='movie-description'>
-                {{movie.title}}
-                <br>
-                <br> {{movie.release_dates.theater}}
-                <br> {{movie.rating.audience_score}}
+                
+                <br>{{movie.title}}
+                
             </div>
         </a>
     </ion-content>
