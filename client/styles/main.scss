@@ -1,7 +1,37 @@
 @import "../../node_modules/ionic-sdk/scss/ionic.scss";
-
-  
-
-
+@import "../../node_modules/font-awesome/scss/font-awesome.scss";
+@import "../../node_modules/bootstrap/dist/css/bootstrap";
+@import "../../node_modules/bootstrap/dist/css/bootstrap-theme";
 @import "../../node_modules/angular-material/angular-material";
 
+$font-stack:    Helvetica, sans-serif;
+$primary-color: white;
+$secondary-color: black;
+
+.nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+}
+
+.pane {
+    background-color: $secondary-color;
+    color: $primary-color;
+}
+
+.cover-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+	background-color: $secondary-color;
+}
+
+.movie-description {
+    text-align: center;
+    font-weight: bold;
+    color: $primary-color;
+    font-style: $font-stack; 
+}
+
+.side-button-on-nav{
+
+    font-size: 30px;
+}

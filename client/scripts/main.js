@@ -11,9 +11,9 @@ require('angular-animate');
 require('angular-sanitize');
 require('ionic');
 require('ionic-angular');
-require('angular-material');
-var app = angular.module(namespace, ['ionic', 'ngMaterial',
+var app = angular.module(namespace, ['ionic',
     // inject:modules start
+    require('./common')(namespace).name
     // inject:modules end
 ]);
 
