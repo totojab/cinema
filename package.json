@@ -3,7 +3,7 @@
   "description": "cinema",
   "version": "0.0.1",
   "scripts": {
-    "test": "gulp test",
+    "test": "gulp unit",
     "jsbeautify": "js-beautify client/**/*.js client/*.js -r"
   },
   "repository": {
