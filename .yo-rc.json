@@ -1,0 +1,14 @@
+{
+  "generator-mcfly": {
+    "filenameCase": "snake",
+    "filenameSuffix": true,
+    "appname": "cinema",
+    "clientFolder": "client",
+    "ionic": true,
+    "famous": false,
+    "ngCordova": true,
+    "fontawesome": false,
+    "bootstrap": false,
+    "material": true
+  }
+}
