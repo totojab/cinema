@@ -1,0 +1,21 @@
+<ion-view view-title='Movies'>
+    <ion-nav-buttons side='left'>
+        <i class='ion-ios-search-strong' ng-click='vm.searchActivation(); vm.filterMovies(myFilter)' style='font-size:24px'></i>
+    </ion-nav-buttons>
+    <ion-content>
+        <form ng-submit='vm.filterMovies(myFilter)'>
+            <label class="item item-input" ng-show='vm.isSearching'>
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Search" ng-model='myFilter'>
+            </label>
+        </form>
+        <a collection-repeat='movie in vm.moviesDisplayed' item-height='25%' item-width='20%' ng-style="{'background-image': 'url(' + movie.posters.original + ')'}" class='cover-image' ui-sref='tab.description({movieNumber: $index})'>
+            <div class='movie-description'>
+                {{movie.title}}
+                <br>
+                <br> {{movie.release_dates.theater}}
+                <br> {{movie.rating.audience_score}}
+            </div>
+        </a>
+    </ion-content>
+</ion-view>
