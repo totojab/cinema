@@ -12,7 +12,9 @@
 
 
 ## Testing
-
+```bash
+gulp test
+```
 
 ## Changelog
 
