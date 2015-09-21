@@ -15,7 +15,7 @@ module.exports = function(app) {
         vm.moviesDisplayed = [];
         vm.searchActivation = function() {
             vm.isSearching = !vm.isSearching;
-        }
+        };
 
         vm.filterMovies = function(filter) {
             vm.moviesDisplayed = programmes.allMovies();

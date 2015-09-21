@@ -23,9 +23,13 @@ describe(app.name, function() {
             });
 
             it('should get 20 movies', function() {
-                var res = this.service.getMovies();
-                expect(res.length).toEqual(20);
-            })
+                var res = [];
+                this.service.getMovies().then(function(movies) {
+                    res = movies;
+
+                    expect(res.length).toEqual(20);
+                });
+            });
 
         });
     });

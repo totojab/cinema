@@ -15,7 +15,7 @@ module.exports = function(app) {
         vm.moviesDisplayed = [];
         vm.searchActivation = function() {
             vm.isSearching = !vm.isSearching;
-        }
+        };
 
         vm.filterMovies = function(filter) {
             vm.moviesDisplayed = programmes.allMovies();
@@ -23,7 +23,7 @@ module.exports = function(app) {
         };
 
         var activate = function() {
-            programmes.getMovies().then(function(movies) {
+            programmes.getDvd().then(function(movies) {
                 vm.moviesDisplayed = movies;
             });
 
