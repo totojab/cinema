@@ -55,6 +55,17 @@ module.exports = function(namespace) {
             }
         })
 
+        .state('tab.dvdescription', {
+            url: '/movies/:movieNumber',
+            views: {
+                'shows': {
+                    template: require('./views/dvd-description.html'),
+                    controller: fullname + '.dvdDescription as vm'
+
+                }
+            }
+        })
+
         .state('tab.movies', {
             url: '/movies',
             views: {
@@ -70,7 +81,7 @@ module.exports = function(namespace) {
             url: '/description/:movieNumber',
             views: {
                 'movies': {
-                    template: require('./views/description.html'),
+                    template: require('./views/movie-description.html'),
                     controller: fullname + '.descriptionCtrl as vm'
 
                 }
