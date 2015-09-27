@@ -11,20 +11,20 @@ module.exports = function(app) {
         var vm = this;
         vm.controllername = fullname;
         vm.isSearching = false;
-        vm.moviesArray = [];
-        vm.moviesDisplayed = [];
+        vm.dvdArray = [];
+        vm.dvdDisplayed = [];
         vm.searchActivation = function() {
             vm.isSearching = !vm.isSearching;
         };
 
         vm.filterMovies = function(filter) {
-            vm.moviesDisplayed = programmes.allMovies();
-            vm.moviesDisplayed = programmes.filterTitles(vm.moviesDisplayed, filter);
+            vm.dvdDisplayed = programmes.allDvd();
+            vm.dvdDisplayed = programmes.filterTitles(vm.dvdDisplayed, filter);
         };
 
         var activate = function() {
             programmes.getDvd().then(function(movies) {
-                vm.moviesDisplayed = movies;
+                vm.dvdDisplayed = movies;
             });
 
         };
