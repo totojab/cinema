@@ -9,7 +9,7 @@
                 <input type="search" placeholder="Search" ng-model='myFilter'>
             </label>
         </form>
-        <a collection-repeat='movie in vm.moviesDisplayed' item-height='25%' item-width='20%' ng-style="{'background-image': 'url(' + movie.posters.original + ')'}" class='cover-image' ui-sref='tab.dvdescription({movieNumber: $index})'>
+        <a collection-repeat='movie in vm.dvdDisplayed' item-height='25%' item-width='20%' ng-style="{'background-image': 'url(' + movie.posters.original + ')'}" class='cover-image' ui-sref='tab.dvdescription({dvdNumber: $index})'>
             <div class='movie-description'>
                 
                 <br>{{movie.title}}

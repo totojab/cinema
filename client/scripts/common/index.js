@@ -57,7 +57,7 @@ module.exports = function(namespace) {
         })
 
         .state('tab.dvdescription', {
-            url: '/movies/:movieNumber',
+            url: '/dvdescription/:dvdNumber',
             views: {
                 'shows': {
                     template: require('./views/dvd-description.html'),

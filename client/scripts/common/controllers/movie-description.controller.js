@@ -14,10 +14,10 @@ module.exports = function(app) {
         var activate = function() {
 
             if ($stateParams.movieNumber) {
+
                 vm.number = $stateParams.movieNumber;
                 vm.movie = programmes.getMovieByNumber(vm.number);
                 vm.movie.reviews = [];
-
                 programmes.getReviews(vm.movie).then(function(reviews) {
                     vm.movie.reviews = reviews;
                 });

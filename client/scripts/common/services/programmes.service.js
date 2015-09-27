@@ -3,13 +3,12 @@ var servicename = 'programmes';
 var _ = require('lodash');
 
 module.exports = function(app) {
-    var rottenKey = '7ue5rxaj9xn4mhbmsuexug54';
-    var dependencies = ['$http'];
 
-    function service($http) {
-        var add = function(a, b) {
-            return a + b;
-        };
+    var dependencies = ['$http', app.name + '.constants'];
+
+    function service($http, constants) {
+
+        var urls = constants.all();
 
         var moviesArray = [];
         var dvdArray = [];
@@ -17,26 +16,8 @@ module.exports = function(app) {
         var getMovies = function() {
             var request = $http({
                 method: 'get',
-                url: 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=' + rottenKey + '&page_limit=20',
-                params: {
-                    action: 'get'
-                }
-            });
-            return request
-                .then(function(response) {
-                    return response.data.movies;
-
-                }).then(function(movies) {
-                    dvdArray = movies;
-                    return dvdArray;
-                });
-
-        };
-
-        var getDvd = function() {
-            var request = $http({
-                method: 'get',
-                url: 'http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/new_releases.json?apikey=' + rottenKey + '&page_limit=20',
+                url: urls.rottenUrl + '/lists/movies/in_theaters.json?apikey=' +
+                    urls.rottenKey + '&page_limit=20',
                 params: {
                     action: 'get'
                 }
@@ -51,10 +32,30 @@ module.exports = function(app) {
                 });
         };
 
+        var getDvd = function() {
+            var request = $http({
+                method: 'get',
+                url: urls.rottenUrl + '/lists/dvds/new_releases.json?apikey=' +
+                    urls.rottenKey + '&page_limit=20',
+                params: {
+                    action: 'get'
+                }
+            });
+            return request
+                .then(function(response) {
+                    return response.data.movies;
+
+                }).then(function(movies) {
+                    dvdArray = movies;
+                    return dvdArray;
+                });
+        };
+
         var getReviews = function(movie) {
             var request = $http({
                 method: 'get',
-                url: 'http://api.rottentomatoes.com/api/public/v1.0/movies/' + movie.id + '/reviews.json?apikey=' + rottenKey,
+                url: urls.rottenUrl + '/movies/' + movie.id + '/reviews.json?apikey=' +
+                    urls.rottenKey,
                 params: {
                     action: 'get'
                 }
@@ -63,15 +64,22 @@ module.exports = function(app) {
                 .then(function(response) {
                     return response.data;
                 });
-
         };
 
         var allMovies = function() {
             return moviesArray;
         };
 
+        var allDvd = function() {
+            return dvdArray;
+        };
+
         var getMovieByNumber = function(number) {
             return moviesArray[number];
+        };
+
+        var getDvdByNumber = function(number) {
+            return dvdArray[number];
         };
 
         var filterTitles = function(movies, filter) {
@@ -85,18 +93,19 @@ module.exports = function(app) {
             var filterArray = filter.split(',');
 
             return _.filter(movies, function(item) {
-                return _.contains(filterArray, item.title);
+                return _.contains(item.title.toLowerCase(), filterArray);
             });
         };
 
         return {
-            add: add,
             allMovies: allMovies,
             getMovies: getMovies,
             filterTitles: filterTitles,
             getMovieByNumber: getMovieByNumber,
             getReviews: getReviews,
-            getDvd: getDvd
+            allDvd: allDvd,
+            getDvd: getDvd,
+            getDvdByNumber: getDvdByNumber
         };
 
     }
