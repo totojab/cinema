@@ -30,6 +30,16 @@ describe(app.name, function() {
                 expect(this.controller.controllername).toBe(app.name + '.' + controllername);
             });
 
+            it('isSearching should work', function() {
+                this.controller.searchActivation();
+                expect(this.controller.isSearching).toBe(true);
+            });
+
+            it('filterMovies should work', function() {
+                this.controller.filterMovies('aaa');
+                expect(this.controller.dvdDisplayed).toBeDefined();
+            });
+
         });
     });
 });
