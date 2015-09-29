@@ -10,6 +10,16 @@ describe(app.name, function() {
 
         describe(servicename, function() {
 
+            var moviesTestList = [{
+                title: 'Matrix Reloaded'
+            }, {
+                title: 'Star Wars II'
+            }, {
+                title: 'Minority Report'
+            }, {
+                title: 'Intouchables'
+            }];
+
             beforeEach(function() {
                 angular.mock.module(app.name);
             });
@@ -28,6 +38,54 @@ describe(app.name, function() {
                     res = movies;
 
                     expect(res.length).toEqual(20);
+                });
+            });
+
+            it('filter should work with part names', function() {
+                var res = this.service.filterTitles(moviesTestList, 'touch');
+                expect(res).toEqual([{
+                    title: 'Intouchables'
+                }]);
+            });
+
+            it('filter should work with name with spaces', function() {
+                var res = this.service.filterTitles(moviesTestList, ' ');
+                expect(res).toEqual(moviesTestList);
+            });
+
+            it('allMovies() should return a defined array', function() {
+                var res = this.service.allMovies();
+                expect(res).toBeDefined();
+            });
+
+            it('allDvd() should return a defined array', function() {
+                var res = this.service.allDvd();
+                expect(res).toBeDefined();
+            });
+
+            it('getMovieByNumber should work with empty array', function() {
+                var res = this.service.getMovieByNumber(2);
+                expect(res).toBeDefined();
+            });
+
+            it('getMovieByNumber should work with non empty array', function() {
+                this.service.replaceMovies(moviesTestList);
+                var res = this.service.getMovieByNumber(2);
+                expect(res).toEqual({
+                    title: 'Minority Report'
+                });
+            });
+
+            it('getDvdByNumber should work with empty array', function() {
+                var res = this.service.getDvdByNumber(2);
+                expect(res).toBeDefined();
+            });
+
+            it('getdvdByNumber should work with non empty array', function() {
+                this.service.replaceDvd(moviesTestList);
+                var res = this.service.getDvdByNumber(2);
+                expect(res).toEqual({
+                    title: 'Minority Report'
                 });
             });
 

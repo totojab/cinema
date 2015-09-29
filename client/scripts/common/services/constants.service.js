@@ -11,15 +11,11 @@ module.exports = function(app) {
     };
 
     function service() {
-        var add = function(a, b) {
-            return a + b;
-        };
         var all = function() {
             return urls;
         };
 
         return {
-            add: add,
             all: all
         };
 

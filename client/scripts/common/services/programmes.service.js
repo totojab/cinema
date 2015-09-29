@@ -75,11 +75,23 @@ module.exports = function(app) {
         };
 
         var getMovieByNumber = function(number) {
-            return moviesArray[number];
+            if (moviesArray && moviesArray.length > number) {
+                return moviesArray[number];
+            } else {
+                return {
+                    title: 'Movie not found'
+                };
+            }
         };
 
         var getDvdByNumber = function(number) {
-            return dvdArray[number];
+            if (dvdArray && dvdArray.length > number) {
+                return dvdArray[number];
+            } else {
+                return {
+                    title: 'Movie not found'
+                };
+            }
         };
 
         var filterTitles = function(movies, filter) {
@@ -87,14 +99,20 @@ module.exports = function(app) {
             if (!filter || filter === '' || filter === ' ') {
                 return movies;
             }
-            filter = filter.replace(' ,', ',');
-            filter = filter.replace(', ', ',');
 
             var filterArray = filter.split(',');
 
             return _.filter(movies, function(item) {
                 return _.contains(item.title.toLowerCase(), filterArray);
             });
+        };
+
+        var replaceMovies = function(a) {
+            moviesArray = a;
+        };
+
+        var replaceDvd = function(a) {
+            dvdArray = a;
         };
 
         return {
@@ -105,7 +123,9 @@ module.exports = function(app) {
             getReviews: getReviews,
             allDvd: allDvd,
             getDvd: getDvd,
-            getDvdByNumber: getDvdByNumber
+            getDvdByNumber: getDvdByNumber,
+            replaceMovies: replaceMovies,
+            replaceDvd: replaceDvd
         };
 
     }
